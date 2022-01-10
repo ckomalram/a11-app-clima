@@ -1,0 +1,67 @@
+<div class="container mt-4">
+  <div class="row">
+    <h3>Listado de Estudiantes</h3>
+  </div>
+  <br />
+  <table class="table" *ngIf="listStudents.length > 0">
+    <thead>
+      <th>Nro</th>
+      <th>Nombre</th>
+      <th>Estado</th>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let estudiante of listStudents"
+        [ngSwitch]="estudiante.estado"
+      >
+        <!-- <tr *ngFor="let estudiante of listStudents; let i = index">
+          <td>{{ i }}</td> -->
+        <td>{{ estudiante.id }}</td>
+        <td>
+          <span
+            [ngClass]="
+              estudiante.nombre === 'Super Admin'
+                ? 'badge bg-success'
+                : 'badge bg-secondary'
+            "
+          >
+            {{ estudiante.nombre }}
+          </span>
+        </td>
+        <td>
+          <span *ngSwitchCase="'Promocionado'" class="badge bg-success">
+            {{ estudiante.estado }}
+          </span>
+          <span *ngSwitchCase="'Regular'" class="badge bg-secondary">
+            {{ estudiante.estado }}
+          </span>
+          <span *ngSwitchCase="'Libre'" class="badge bg-danger">
+            {{ estudiante.estado }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 *ngIf="listStudents.length === 0">No hay registros de estudiantes...</h4>
+</div>
+
+<!-- <div class="container mt-4">
+  <div class="row">
+    <h3>Hola mi nombre es {{ nombre }}</h3>
+    <h3>La Suma de 2 + 2 es {{ getSuma(2, 2) }}</h3>
+    <br />
+  </div>
+  <div class="row">
+    <input
+      type="text"
+      class="form-control"
+      [placeholder]="textPlaceholder"
+      [disabled]="deshabilitado" [(ngModel)]="textImgSrc"
+    />
+    <br />
+    <img [src]="imgSrc" alt="img" width="300px" height="300px" />
+    <button class="btn btn-primary" (click)="changeImg()">Change It</button>
+  </div>
+</div>
+<br /> -->
