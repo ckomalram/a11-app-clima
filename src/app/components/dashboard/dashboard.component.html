@@ -1,0 +1,35 @@
+<div class="alert alert-dismissible alert-danger" *ngIf="mostrarError">
+  <div class="text-center">
+    <strong>Error al obtener clima en la ciudad ingresada </strong>
+  </div>
+
+</div>
+
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-4">
+      <img src="http://serprogramador.es/wp-content/uploads/2014/06/weather.jpg" alt="img_clima" width="300px" height="300px">
+    </div>
+    <div class="col-lg-6">
+      <input type="text" class="form-control form-control-lg size" placeholder="Ingrese Ciudad " [(ngModel)]="ciudad">
+       <button class="btn btn-primary btn-lg btn-block mt-4 size" [disabled]="ciudad == ''" (click)="obtenerClima()">
+        OBTENER CLIMA
+      </button>
+
+      <div class="text-center mt-3" *ngIf="loading">
+        <div class="spinner-grow text-primary" role="status"></div>
+        <div class="spinner-grow text-primary" role="status"></div>
+        <div class="spinner-grow text-primary" role="status"></div>
+      </div>
+
+      <div class="card mt-3" *ngIf="query" >
+        <div class="card-body">
+          <p><b>Temperatura:</b> {{temperatura  | number: '1.2-2'}} °C</p>
+          <p><b>Humedad: </b> {{humedad}}</p>
+          <p><b>Clima: </b>{{clima}}</p>
+          <p><b>Detalles: </b>{{climaDetalles}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
